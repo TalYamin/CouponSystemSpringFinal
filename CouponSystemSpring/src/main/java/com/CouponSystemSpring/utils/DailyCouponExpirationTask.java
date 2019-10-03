@@ -83,8 +83,8 @@ public class DailyCouponExpirationTask implements Runnable {
 			System.out.println("Daily Coupon Expiration Task running now");
 
 			while (b) {
-				List<Coupon> coupons = couponRepository.findAllByEndDateLessThan(LocalDate.now());
-
+				List<Coupon> coupons = couponRepository.findAllByEndDateLessThanAndActiveTrue(LocalDate.now());
+				System.err.println(coupons);
 				/* Change expired coupon to not active */
 				for (Coupon c : coupons) {
 					c.setActive(false);
@@ -95,7 +95,7 @@ public class DailyCouponExpirationTask implements Runnable {
 				 * should be 60*60*24*1000 = 24 hrs in milliseconds. But for test only i've used
 				 * 10000 milliseconds in order to demonstrate it works.
 				 */
-				taskThread.sleep(10000);
+				taskThread.sleep(100000);
 			}
 
 		} catch (Exception e) {
