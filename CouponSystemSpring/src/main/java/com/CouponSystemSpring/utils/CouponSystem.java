@@ -42,6 +42,8 @@ public class CouponSystem {
 
 	public CouponClient login(String userName, String password, ClientType clientType) throws Exception {
 
+		ctx.getBean(DailyCouponExpirationTask.class).startTask();
+		
 		try {
 			switch (clientType) {
 
