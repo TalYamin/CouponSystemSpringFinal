@@ -32,6 +32,10 @@ public class LoginCouponSystemException extends Exception {
 		this.password = password;
 		this.clientType = clientType;
 	}
+	
+	public LoginCouponSystemException(String message) {
+		super(message);
+	}
 
 	/* Getter method to receive the value of user name */
 	public String getUserName() {
