@@ -19,6 +19,7 @@ import com.CouponSystemSpring.exception.IncomeException;
 import com.CouponSystemSpring.exception.NoDetailsFoundException;
 import com.CouponSystemSpring.exception.NotBelongsException;
 import com.CouponSystemSpring.exception.ObjectNotFoundException;
+import com.CouponSystemSpring.exception.RemovingCouponException;
 import com.CouponSystemSpring.model.Company;
 import com.CouponSystemSpring.model.Coupon;
 import com.CouponSystemSpring.model.CouponType;
@@ -157,6 +158,11 @@ public class CompanyServiceImpl implements CompanyService, CouponClient {
 						"Company failed to remove coupon - this coupon not belongs to this company. ",
 						this.company.getCompanyId(), this.clientType.toString(), couponId);
 			}
+			
+			if (!couponRepository.findById(couponId).get().getCustomers().isEmpty()) {
+				throw new RemovingCouponException("Company failed to remove coupon - this coupon already was pruchased by customers in system. ",
+						this.company.getCompanyId(),  couponId);
+			}
 
 			couponRepository.deleteById(couponId);
 			List<Coupon> couponsList = couponRepository.findAllByCompanyCompanyId(this.company.getCompanyId());
@@ -174,6 +180,10 @@ public class CompanyServiceImpl implements CompanyService, CouponClient {
 			serviceStatus.setSuccess(false);
 			serviceStatus.setMessage(e.getMessage());
 		} catch (NotBelongsException e) {
+			System.err.println(e.getMessage());
+			serviceStatus.setSuccess(false);
+			serviceStatus.setMessage(e.getMessage());
+		} catch (RemovingCouponException e) {
 			System.err.println(e.getMessage());
 			serviceStatus.setSuccess(false);
 			serviceStatus.setMessage(e.getMessage());
