@@ -83,7 +83,7 @@ public class DailyCouponExpirationTask implements Runnable {
 			System.out.println("Daily Coupon Expiration Task running now");
 
 			while (b) {
-				List<Coupon> coupons = couponRepository.findAllByEndDateGreaterThan(LocalDate.now());
+				List<Coupon> coupons = couponRepository.findAllByEndDateLessThan(LocalDate.now());
 
 				/* Change expired coupon to not active */
 				for (Coupon c : coupons) {
