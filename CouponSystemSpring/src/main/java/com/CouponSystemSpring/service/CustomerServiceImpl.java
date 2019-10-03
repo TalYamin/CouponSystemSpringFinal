@@ -261,7 +261,7 @@ public class CustomerServiceImpl implements CustomerService, CouponClient {
 	@Override
 	public List<Coupon> getAllCouponsList() throws Exception {
 		try {
-			List<Coupon>coupons = couponRepository.findAll();
+			List<Coupon>coupons = couponRepository.findAllByActiveTrue();
 
 			if (coupons.isEmpty()) {
 				throw new NoDetailsFoundException(
