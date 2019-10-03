@@ -31,6 +31,8 @@ public interface CouponRepository extends JpaRepository<Coupon, Long> {
 	
 	public List<Coupon> findAllByEndDateLessThanAndActiveTrue(LocalDate limitDate);
 	
+	public List<Coupon> findAllByActiveTrue();
+	
 //	@Query("SELECT c FROM customer AS cust join customer_coupon AS c WHERE cust.customer_id=:customerId AND c.type =:typeName")
 //	public List<Coupon> findAllCustomerCouponByType (long customerId, String typeName);
 	
