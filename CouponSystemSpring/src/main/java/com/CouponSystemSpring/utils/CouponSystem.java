@@ -27,13 +27,13 @@ public class CouponSystem {
 	@Autowired
 	private ApplicationContext ctx;
 
-	@Resource
+	@Autowired
 	private AdminService adminService;
 
-	@Resource
+	@Autowired
 	private CustomerRepository customerRepository;
 
-	@Resource
+	@Autowired
 	private CompanyRepository companyRepository;
 
 	// private DailyCouponExpirationDate

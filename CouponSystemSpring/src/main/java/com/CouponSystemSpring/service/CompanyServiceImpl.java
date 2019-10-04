@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -37,21 +38,21 @@ import com.CouponSystemSpring.utils.ServiceStatus;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CompanyServiceImpl implements CompanyService, CouponClient {
 
-	@Resource
+	@Autowired
 	private CompanyRepository companyRepository;
 
-	@Resource
+	@Autowired
 	private CouponRepository couponRepository;
 
-	@Resource
+	@Autowired
 	private CustomerRepository customerRepository;
 	
-	@Resource
+	@Autowired
 	private IncomeService incomeService;
 
 	private ClientType clientType = ClientType.COMPANY;
 
-	@Resource
+	@Autowired
 	private ServiceStatus serviceStatus;
 
 	private Company company;

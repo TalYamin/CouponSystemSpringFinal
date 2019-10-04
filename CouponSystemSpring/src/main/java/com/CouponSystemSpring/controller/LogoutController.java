@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,10 +28,10 @@ public class LogoutController {
 
 	private ServiceStatus serviceStatus;
 
-	@Resource
+	@Autowired
 	private Tokens tokens;
 
-	@Resource
+	@Autowired
 	private CouponSystem couponSystem;
 
 	@PostMapping
