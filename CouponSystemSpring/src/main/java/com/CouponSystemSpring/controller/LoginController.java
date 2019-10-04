@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,10 +29,10 @@ import com.CouponSystemSpring.utils.CouponSystem;
 @RequestMapping("/login")
 public class LoginController {
 
-	@Resource
+	@Autowired
 	private Tokens tokens;
 
-	@Resource
+	@Autowired
 	private CouponSystem couponSystem;
 
 	@PostMapping

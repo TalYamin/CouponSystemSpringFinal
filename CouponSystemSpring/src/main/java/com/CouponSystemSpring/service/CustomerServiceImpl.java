@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -34,18 +35,18 @@ import com.CouponSystemSpring.utils.ServiceStatus;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CustomerServiceImpl implements CustomerService, CouponClient {
 
-	@Resource
+	@Autowired
 	private CustomerRepository customerRepository;
 
-	@Resource
+	@Autowired
 	private CouponRepository couponRepository;
 
 	private ClientType clientType = ClientType.CUSTOMER;
 
-	@Resource
+	@Autowired
 	private ServiceStatus serviceStatus;
 	
-	@Resource
+	@Autowired
 	private IncomeService incomeService;
 
 	private Customer customer;

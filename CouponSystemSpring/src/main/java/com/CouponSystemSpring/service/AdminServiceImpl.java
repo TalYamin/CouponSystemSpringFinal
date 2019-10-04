@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.CouponSystemSpring.exception.CompanyExistsException;
@@ -23,18 +24,18 @@ import com.CouponSystemSpring.utils.ServiceStatus;
 @Service
 public class AdminServiceImpl implements AdminService, CouponClient {
 
-	@Resource
+	@Autowired
 	private CompanyRepository companyRepository;
 
-	@Resource
+	@Autowired
 	private CustomerRepository customerRepository;
 
-	@Resource
+	@Autowired
 	private CouponRepository couponRepository;
 
 	private ClientType clientType = ClientType.ADMIN;
 
-	@Resource
+	@Autowired
 	private ServiceStatus serviceStatus;
 
 	@Override

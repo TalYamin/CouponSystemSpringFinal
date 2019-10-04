@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,13 +30,13 @@ import com.CouponSystemSpring.utils.ServiceStatus;
 public class IncomeController {
 
 	private ServiceStatus serviceStatus;
-	@Resource
+	@Autowired
 	private IncomeService incomeService;
 
-	@Resource
+	@Autowired
 	private Tokens tokens;
 
-	@Resource
+	@Autowired
 	ApplicationContext ctx;
 
 	public AdminService getAdminService(String token) {

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.CouponSystemSpring.model.Income;
@@ -16,10 +17,10 @@ import com.CouponSystemSpring.utils.ServiceStatus;
 @Service
 public class IncomeServiceImpl implements IncomeService {
 
-	@Resource
+	@Autowired
 	private IncomeRepository incomeRepository;
 
-	@Resource
+	@Autowired
 	private ServiceStatus serviceStatus;
 
 	@Override
