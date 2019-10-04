@@ -108,6 +108,8 @@ public class CompanyServiceImpl implements CompanyService, CouponClient {
 				throw new IncomeException("Company failed to store income",this.company.getCompanyId(), this.company.getCompanyName());
 			}
 			
+			System.err.println(coupon);
+			System.err.println(couponRepository.findById(coupon.getCouponId()));
 			System.out
 					.println("Company " + this.company.getCompanyName() + " added new coupon: " + coupon.getCouponId());
 			serviceStatus.setSuccess(true);
@@ -309,6 +311,8 @@ public class CompanyServiceImpl implements CompanyService, CouponClient {
 			}
 
 			Coupon coupon = couponRepository.findById(couponId).get();
+			coupon.setStartDate(coupon.getStartDate().plusDays(1));
+			coupon.setEndDate(coupon.getEndDate().plusDays(1));
 			return coupon;
 
 		} catch (ObjectNotFoundException e) {
@@ -333,6 +337,11 @@ public class CompanyServiceImpl implements CompanyService, CouponClient {
 				throw new NoDetailsFoundException(
 						"Company " + this.company.getCompanyId() + " failed to get all coupons - no details found",
 						this.company.getCompanyId(), this.clientType);
+			}
+			
+			for(Coupon coupon : coupons) {
+				coupon.setStartDate(coupon.getStartDate().plusDays(1));
+				coupon.setEndDate(coupon.getEndDate().plusDays(1));
 			}
 
 			return coupons;
@@ -360,6 +369,11 @@ public class CompanyServiceImpl implements CompanyService, CouponClient {
 						"Company " + this.company.getCompanyId()
 								+ " failed to get all coupons by type - no details found",
 						this.company.getCompanyId(), this.clientType);
+			}
+			
+			for(Coupon coupon : coupons) {
+				coupon.setStartDate(coupon.getStartDate().plusDays(1));
+				coupon.setEndDate(coupon.getEndDate().plusDays(1));
 			}
 
 			return coupons;
@@ -389,6 +403,11 @@ public class CompanyServiceImpl implements CompanyService, CouponClient {
 								+ " failed to get all coupons by price - no details found",
 						this.company.getCompanyId(), this.clientType);
 			}
+			
+			for(Coupon coupon : coupons) {
+				coupon.setStartDate(coupon.getStartDate().plusDays(1));
+				coupon.setEndDate(coupon.getEndDate().plusDays(1));
+			}
 
 			return coupons;
 
@@ -415,6 +434,11 @@ public class CompanyServiceImpl implements CompanyService, CouponClient {
 						"Company " + this.company.getCompanyId()
 								+ " failed to get all coupons by date - no details found",
 						this.company.getCompanyId(), this.clientType);
+			}
+			
+			for(Coupon coupon : coupons) {
+				coupon.setStartDate(coupon.getStartDate().plusDays(1));
+				coupon.setEndDate(coupon.getEndDate().plusDays(1));
 			}
 
 			return coupons;
