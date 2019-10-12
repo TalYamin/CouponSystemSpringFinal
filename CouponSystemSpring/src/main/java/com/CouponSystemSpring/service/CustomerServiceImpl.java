@@ -128,6 +128,8 @@ public class CustomerServiceImpl implements CustomerService, CouponClient {
 			couponRepository.save(newCoupon);
 
 			newCoupon.setAmount(newCoupon.getAmount() - 1);
+			newCoupon.setStartDate(newCoupon.getStartDate().plusDays(1));
+			newCoupon.setEndDate(newCoupon.getEndDate().plusDays(1));
 			couponRepository.save(newCoupon);
 			
 			Income income = new Income(this.customer.getCustomerName(), this.customer.getCustomerId(), LocalDate.now(), IncomeType.CUSTOMER_PURCHASE, newCoupon.getPrice());
@@ -182,6 +184,12 @@ public class CustomerServiceImpl implements CustomerService, CouponClient {
 								+ " failed to get all purchase history - no details found",
 						this.customer.getCustomerId(), this.clientType);
 			}
+			
+			for(Coupon coupon : couponsList) {
+				coupon.setStartDate(coupon.getStartDate().plusDays(1));
+				coupon.setEndDate(coupon.getEndDate().plusDays(1));
+			}
+			
 			return couponsList;
 
 		} catch (NoDetailsFoundException e) {
@@ -213,6 +221,11 @@ public class CustomerServiceImpl implements CustomerService, CouponClient {
 						"Customer " + this.customer.getCustomerId()
 								+ " failed to get all coupons by type - no details found",
 						this.customer.getCustomerId(), this.clientType);
+			}
+			
+			for(Coupon coupon : couponsToView) {
+				coupon.setStartDate(coupon.getStartDate().plusDays(1));
+				coupon.setEndDate(coupon.getEndDate().plusDays(1));
 			}
 			return couponsToView;
 
@@ -246,6 +259,10 @@ public class CustomerServiceImpl implements CustomerService, CouponClient {
 								+ " failed to get all coupons by price - no details found",
 						this.customer.getCustomerId(), this.clientType);
 			}
+			for(Coupon coupon : couponsToView) {
+				coupon.setStartDate(coupon.getStartDate().plusDays(1));
+				coupon.setEndDate(coupon.getEndDate().plusDays(1));
+			}
 			return couponsToView;
 
 		} catch (NoDetailsFoundException e) {
@@ -269,6 +286,10 @@ public class CustomerServiceImpl implements CustomerService, CouponClient {
 						"Customer " + this.customer.getCustomerId()
 								+ " failed to get all coupons list - no details found",
 						this.customer.getCustomerId(), this.clientType);
+			}
+			for(Coupon coupon : coupons) {
+				coupon.setStartDate(coupon.getStartDate().plusDays(1));
+				coupon.setEndDate(coupon.getEndDate().plusDays(1));
 			}
 			return coupons;
 

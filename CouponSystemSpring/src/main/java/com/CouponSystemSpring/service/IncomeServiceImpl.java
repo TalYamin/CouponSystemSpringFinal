@@ -1,6 +1,5 @@
 package com.CouponSystemSpring.service;
 
-
 import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.List;
@@ -10,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.CouponSystemSpring.model.Coupon;
 import com.CouponSystemSpring.model.Income;
 import com.CouponSystemSpring.repository.IncomeRepository;
 import com.CouponSystemSpring.utils.ServiceStatus;
@@ -36,7 +36,7 @@ public class IncomeServiceImpl implements IncomeService {
 			serviceStatus.setSuccess(false);
 			serviceStatus.setMessage("Failed to store income: " + income);
 			System.out.println(e.getMessage());
-			}
+		}
 		return serviceStatus;
 	}
 
@@ -45,6 +45,11 @@ public class IncomeServiceImpl implements IncomeService {
 		try {
 
 			List<Income> incomes = incomeRepository.findAll();
+
+			for (Income income : incomes) {
+				income.setOperationDate(income.getOperationDate().plusDays(1));
+			}
+
 			System.out.println(incomes);
 			return incomes;
 
@@ -52,7 +57,7 @@ public class IncomeServiceImpl implements IncomeService {
 			System.out.println(e.getMessage());
 		}
 		return null;
-		
+
 	}
 
 	@Override
@@ -61,6 +66,11 @@ public class IncomeServiceImpl implements IncomeService {
 		try {
 
 			List<Income> incomesByCustomer = incomeRepository.findAllByClientId(customerId);
+			
+			for (Income income : incomesByCustomer) {
+				income.setOperationDate(income.getOperationDate().plusDays(1));
+			}
+			
 			System.out.println(incomesByCustomer);
 			return incomesByCustomer;
 
@@ -76,6 +86,11 @@ public class IncomeServiceImpl implements IncomeService {
 		try {
 
 			List<Income> incomesByCompany = incomeRepository.findAllByClientId(companyId);
+			
+			for (Income income : incomesByCompany) {
+				income.setOperationDate(income.getOperationDate().plusDays(1));
+			}
+			
 			System.out.println(incomesByCompany);
 			return incomesByCompany;
 
