@@ -12,6 +12,6 @@ public class CouponSystemSpringApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext applicationContext = SpringApplication.run(CouponSystemSpringApplication.class,
 				args);
-	}
+	} 
 
 }

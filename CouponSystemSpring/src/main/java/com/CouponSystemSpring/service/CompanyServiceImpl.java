@@ -220,7 +220,7 @@ public class CompanyServiceImpl implements CompanyService, CouponClient {
 			}
 
 			Coupon coupon = couponRepository.findById(couponId).get();
-			coupon.setStartDate(coupon.getStartDate());
+			coupon.setStartDate(coupon.getStartDate().plusDays(1));
 			coupon.setEndDate(DateConverterUtil.convertStringDate(newEndDate));
 			coupon.setPrice(newPrice);
 

@@ -128,6 +128,8 @@ public class CustomerServiceImpl implements CustomerService, CouponClient {
 			couponRepository.save(newCoupon);
 
 			newCoupon.setAmount(newCoupon.getAmount() - 1);
+			newCoupon.setStartDate(newCoupon.getStartDate().plusDays(1));
+			newCoupon.setEndDate(newCoupon.getEndDate().plusDays(1));
 			couponRepository.save(newCoupon);
 			
 			Income income = new Income(this.customer.getCustomerName(), this.customer.getCustomerId(), LocalDate.now(), IncomeType.CUSTOMER_PURCHASE, newCoupon.getPrice());
